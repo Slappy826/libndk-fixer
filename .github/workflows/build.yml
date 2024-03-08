@@ -21,5 +21,5 @@ jobs:
           ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }} 
       - uses: actions/upload-artifact@v4
         with:
-          name: lib file
+          name: lib
           path: build/libndk_fixer.so
