@@ -1,0 +1,25 @@
+name: Build libndk_fixer
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: install cmake
+        run: |
+          sudo apt update -qq
+          sudo apt install -y cmake
+      - uses: nttld/setup-ndk@v1
+        id: setup-ndk
+        with:
+          ndk-version: r25c
+          add-to-path: false
+      - run: ./build.sh
+        env:
+          ANDROID_NDK_HOME: ${{ steps.setup-ndk.outputs.ndk-path }} 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lib file
+          path: build/libndk_fixer.so
