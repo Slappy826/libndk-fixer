@@ -14,7 +14,8 @@ This fixes the roblox app crashing inside Waydroid when using libndk_translation
 #### Tested Distributions
 - Ubuntu 23.04 and later
 - Nobara 39 and later
-
+####
+(the above list is not exhaustive and just something me and another person tested with personally)
 
 ## Building yourself
 - Ensure you have cmake and the [android ndk](https://developer.android.com/ndk/downloads) on your system and the path is stored in the `ANDROID_NDK_HOME` environment variable.
