@@ -48,3 +48,6 @@ add_custom_command(
     COMMAND $<$<CONFIG:release>:${CMAKE_STRIP}>
     ARGS --strip-all $<TARGET_FILE:ndk_fixer>
 )
+
+install(TARGETS ndk_fixer
+        LIBRARY DESTINATION lib)

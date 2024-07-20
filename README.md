@@ -22,3 +22,28 @@ This fixes the roblox app crashing inside Waydroid when using libndk_translation
 - Clone the repository with `--recursive` to pull the dobby submodule.
 - Run build.sh
 - The resulting built file `libndk_fixer.so` will be in the build directory.
+
+## Building using [Nix](https://nixos.org/)
+
+```
+$ git clone --resursive https://github.com/Slappy826/libndk-fixer
+$ cd libndk-fixer
+$ NIXPKGS_ALLOW_UNFREE=1 nix build --impure -L .?submodules=1
+```
+
+Or without manual repository cloning:
+
+```console
+$ NIXPKGS_ALLOW_UNFREE=1 nix build --impure git+https://github.com/Slappy826/libndk-fixer?submodules=1
+```
+
+Probably, you want to match nixpkgs revision with your NixOS system configuration (e.g. /etc/nixos):
+```console
+$ NIXPKGS_ALLOW_UNFREE=1 nix build --impure --override-input nixpkgs nixpkgs --inputs-from /etc/nixos git+https://github.com/Slappy826/libndk-fixer?submodules=1
+```
+
+Nix will download all required build tools and dependencies before building.
+
+`./result` symlink will be created after successful build and you will find the built library at `result/lib/libndk_fixer.so`.
+
+Tested on NixOS 24.05 - Roblox works under Waydroid!
